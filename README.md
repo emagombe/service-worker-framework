@@ -43,5 +43,62 @@ Inside of you **sw.js** file:
     mode : "offline-first",
   });
   
-  wof..install(["./css/styles.css", "./js/app.js", "./index.html"]);
+  wof.install(["./css/styles.css", "./js/app.js", "./index.html"]);
 ```
+if you would like to make you you application firstly try online requestes then cached files (if the online requestes fail)
+
+``` Javascript
+  wof = new Webonfire({
+    appname : "myappname",
+    version : "1.1.2",
+    mode : "online-first",
+  });
+  
+  wof.install(["./css/styles.css", "./js/app.js", "./index.html"]);
+```
+
+##### Uninstalling application
+
+``` Javascript
+  Webonfire.uninstall("zenbox");
+```
+
+##### Other functions
+
+
+``` Javascript
+  wof = new Webonfire({
+    appname : "myappname",
+    version : "1.1.2",
+    mode : "online-first",
+  });
+  
+  // Installs the web application on the browser
+  wof.install(["./css/styles.css", "./js/app.js", "./index.html"]);
+  
+  // Returns the Application name and the version
+  wof.app();
+  
+  // Returns the Application version
+  wof.getVersion();
+  
+  // Returns the Application name
+  wof.getAppname();
+  
+  // Looks for the installed application and returns the application version
+  Webonfire.getVersion("myappname").then(function(version){
+    console.log(version);
+  });
+  
+```
+
+##### Configuration
+
+Parameter | Description
+------------ | -------------
+**appname** | Set the application name
+**version** | Set the application version
+**mode** | Set the application requests priority: *online-first* or *offline-first*
+**cacheAllRequests** | Values: *true* or *false*, if true it will cache all requests sent by the browser
+**debug** | Values: *true* or *false*
+
