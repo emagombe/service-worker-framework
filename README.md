@@ -1,2 +1,4 @@
-# WebOnFire
-Webonfire JS is an framework of service worker developed in the application management context (Install, uninstall and update)
+# Webonfire JS
+Webonfire JS is an framework of service worker developed in the application management context in which will allow you to install, update and uninstall web application.
+
+
