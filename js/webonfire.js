@@ -1,6 +1,8 @@
 function Webonfire (conf = {
 	appname : "app",
 	version : "1.0.0",
+	mode : "offline-first",
+	cacheAllRequests : true,
 	debug : true
 }) {
 	var root = this;
@@ -13,9 +15,6 @@ function Webonfire (conf = {
 	};
 	this.app = function(){
 		return conf.appname + '__v' + conf.version;
-	};
-	this.instalationStatus = function(){
-		
 	};
 	this.install = function(resources){
 		self.addEventListener("install", function(event){
@@ -37,15 +36,33 @@ function Webonfire (conf = {
 			}
 		});
 		self.addEventListener("fetch", function(event){
-			event.respondWith(
-				caches.match(event.request).then(function(response){
-					return response || fetch(event.request);
-				}).catch(function(ex){
-					if(conf.debug){
-						console.log('Failed to fetch installed files: ', ex);
-					}
-				})
-			);
+			if(conf.cacheAllRequests === true){
+				event.waitUntil(
+					caches.open(root.app()).then(function(this_cache){
+						return caches.match(event.request).then(function(response){
+							return response || fetch(event.request).then(function(response){
+								this_cache.put(event.request, response.clone());
+							});
+						});
+					})
+				);
+			}
+			if (conf.mode === "offline-first" || conf.mode === "") {
+				event.respondWith(
+					caches.match(event.request).then(function(response){
+						return response || fetch(event.request);
+					}).catch(function(ex){
+						if(conf.debug){
+							console.log('Failed to fetch installed files: ', ex);
+						}
+					})
+				);
+			}
+			if (conf.mode === "online-first") {
+				event.respondWith(fetch(event.request).catch(function(ex){
+					return caches.match(event.request);
+				}));
+			}
 		});
 	};
 }

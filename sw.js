@@ -4,6 +4,8 @@ importScripts('./js/webonfire.js');
 wof = new Webonfire({
 	appname : "zenbox",
 	version : "1.1.2",
+	mode : "online-first",
+	cacheAllRequests : true,
 	debug : true
 });
 
