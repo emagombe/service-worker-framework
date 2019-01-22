@@ -2,14 +2,14 @@
 
 Would you like to make your **web application** installable?
 
-**Webonfire JS** is an framework of service worker developed in the application management context in which will allow you to *install*, *update* and *uninstall* web application in the browser.
+**Webonfire JS** is a framework of service worker developed in application management context in which will allow you to *install*, *update* and *uninstall* web application in the browser.
 
 
 ## Installation
 
 1. First create a script in the root of your project **sw.js**
 
-2. On your own **JavaScript** file, initialize service worker:
+2. In your own **JavaScript** file, initialize service worker:
 
 ``` Javascript
   if ('serviceWorker' in navigator) {
@@ -35,7 +35,7 @@ Would you like to make your **web application** installable?
 
 ##### Installing your web application
 
-Inside of you **sw.js** file:
+Inside of your **sw.js** file:
 ``` Javascript
   wof = new Webonfire({
     appname : "myappname",
@@ -45,7 +45,7 @@ Inside of you **sw.js** file:
   
   wof.install(["./css/styles.css", "./js/app.js", "./index.html"]);
 ```
-if you would like to make you you application firstly try online requestes then cached files (if the online requestes fail)
+if you would like to make your application first try online requestes then cached files (if the online requestes fail)
 
 ``` Javascript
   wof = new Webonfire({
@@ -94,7 +94,7 @@ if you would like to make you you application firstly try online requestes then 
 
 ##### Configuration
 
-Parameter | Description
+Parameters | Description
 ------------ | -------------
 **appname** | Set the application name
 **version** | Set the application version
