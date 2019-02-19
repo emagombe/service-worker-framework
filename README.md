@@ -60,7 +60,7 @@ if you would like to make your application first try online requestes then cache
 ##### Uninstalling application
 
 ``` Javascript
-  Webonfire.uninstall("zenbox");
+  Webonfire.uninstall("myappname");
 ```
 
 ##### Other functions
