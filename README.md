@@ -6,6 +6,7 @@ Would you like to make your **web application** installable?
 
 
 ## Installation
+Download the project release https://github.com/emagombe/service-worker-framework/releases
 
 1. First create a script in the root of your project **sw.js**
 
